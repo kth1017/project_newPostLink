@@ -1,5 +1,11 @@
 package fadet.newPostLink.repository;
 
+import fadet.newPostLink.domain.Code;
+
 public interface CodeRepository {
-    void save();
+
+    Code save(Code newOne);
+    Code update();
+    Code findOne();
+
 }
