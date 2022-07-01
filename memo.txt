@@ -1,1 +1,5 @@
 # @InjectMocks는 인터페이스가 안됨
+
+# UnsatisfiedDependencyException뜨면 보통은 인터페이스만 있고 구현체에 @컴포넌트 안붙임
+
+# afterEach에서 clear할때 전부 처리했는지 유의할 것

@@ -47,4 +47,9 @@ public class CodeRepositoryImpl implements CodeRepository {
                 , savedLastOne.getTitleList());
         return resultCode;
     }
+
+    public void clear(){
+        sequence = 0L;
+        store.clear();
+    }
 }

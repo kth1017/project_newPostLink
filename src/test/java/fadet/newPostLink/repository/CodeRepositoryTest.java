@@ -4,6 +4,7 @@ import fadet.newPostLink.TestData;
 import fadet.newPostLink.domain.Code;
 import fadet.newPostLink.domain.ResultCode;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -17,6 +18,11 @@ class CodeRepositoryTest {
 
     @InjectMocks
     private CodeRepositoryImpl codeRepository;
+
+    @AfterEach
+    void 후처리(){
+        codeRepository.clear();
+    }
 
     @Test
     void 테스트양식() {
@@ -51,6 +57,7 @@ class CodeRepositoryTest {
 
         codeRepository.save(newOne1);
         codeRepository.save(newOne2);
+
         //when
         Code savedCode = codeRepository.findLastOne();
 
