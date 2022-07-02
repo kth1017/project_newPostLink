@@ -38,6 +38,7 @@ public class CodeRepositoryImpl implements CodeRepository {
         return store.get(size);
     }
 
+    @Override
     public ResultCode modify() {
         Long size = (long)store.size();
         Code savedLastOne = store.get(size);
