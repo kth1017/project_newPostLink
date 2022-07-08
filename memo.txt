@@ -5,3 +5,5 @@
 # afterEach에서 clear할때 전부 처리했는지 유의할 것
 
 ! @ExtendWith(MockitoExtension.class) 사용시 스프링에서 인터페이스와 구현체 주입시 npe
+
+! 실패 테스트 코드 작성 심화와 CustomException 고민, 테스트 코드 리팩토링
