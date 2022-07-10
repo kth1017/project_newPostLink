@@ -11,3 +11,5 @@
 # 테스트에서 restTemplate 쓰는 실수 x (testRestTemplate)
 
 # writeValueAsString은 throws Exception 으로 handling 필요
+
+! 컨트롤러 테스트에서 di 주입에 대한 학습 필요

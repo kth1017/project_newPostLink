@@ -83,6 +83,7 @@ class CodeControllerTest {
         String url = "http://localhost:" + port + "/";
 
         //when
+        // perform 중 npe발생
         mvc.perform(post(url)
                 .contentType(MediaType.APPLICATION_JSON)
                        .content(new ObjectMapper().writeValueAsString(form)))
