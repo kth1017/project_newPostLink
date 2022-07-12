@@ -84,6 +84,7 @@ class CodeControllerTest {
 
         //when
         // perform 중 npe발생
+        // 디버그로 원인 파악 중
         mvc.perform(post(url)
                 .contentType(MediaType.APPLICATION_JSON)
                        .content(new ObjectMapper().writeValueAsString(form)))

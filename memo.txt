@@ -13,3 +13,5 @@
 # writeValueAsString은 throws Exception 으로 handling 필요
 
 ! 컨트롤러 테스트에서 di 주입에 대한 학습 필요
+
+! mockmvc perform 중 npe발생 > 디버그 결과 code 생성 과정에서 null이 발생함
