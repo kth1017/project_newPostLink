@@ -1,6 +1,7 @@
 package fadet.newPostLink.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import fadet.newPostLink.TestData;
 import fadet.newPostLink.domain.Code;
 import fadet.newPostLink.repository.CodeRepository;
 import org.assertj.core.api.Assertions;
@@ -23,6 +24,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
@@ -34,11 +36,6 @@ class CodeControllerTest {
     CodeController codeController;
     @Autowired
     CodeRepository codeRepository;
-    @Autowired
-    TestRestTemplate restTemplate;
-
-    @Autowired
-    WebApplicationContext context;
 
     @LocalServerPort
     int port;
@@ -75,24 +72,22 @@ class CodeControllerTest {
     public void input_post정상() throws Exception{
 
         //given
-        InputForm form = new InputForm();
-        form.setAllCode("allCode");
-        form.setTitleHtmlKeyword("THK");
-        form.setIndexHtmlKeyword("IHK");
+        InputForm form = new InputForm(TestData.testAllCode, TestData.testTitleHtmlKeyword, TestData.testIndexHtmlKeyword);
 
         String url = "http://localhost:" + port + "/";
 
         //when
         // perform 중 npe발생
         // 디버그로 원인 파악 중
+
         mvc.perform(post(url)
-                .contentType(MediaType.APPLICATION_JSON)
-                       .content(new ObjectMapper().writeValueAsString(form)))
-                        .andExpect(status().isOk());
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(form)))
+                .andExpect(status().is3xxRedirection());
 
         //then
         Code savedOne = codeRepository.findLastOne();
-        assertThat(savedOne.getAllCode()).isEqualTo("allCode");
+        assertThat(savedOne.getAllCode()).isEqualTo(TestData.testAllCode);
 
     }
 

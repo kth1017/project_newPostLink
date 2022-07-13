@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class CodeController {
@@ -22,10 +23,11 @@ public class CodeController {
     }
 
     @PostMapping("/")
-    public String postCode(@ModelAttribute("form") InputForm form){
+    public String postCode(@RequestBody InputForm form){
         Code code = new Code(form.getAllCode(), form.getTitleHtmlKeyword(), form.getIndexHtmlKeyword());
 
         Code savedCode = codeService.saveCode(code);
+
         return "redirect:/valid/"+savedCode.getId();
     }
 }
