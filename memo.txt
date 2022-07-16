@@ -14,4 +14,10 @@
 
 ! 컨트롤러 테스트에서 di 주입에 대한 학습 필요
 
-! mockmvc perform 중 npe발생 > 디버그 결과 code 생성 과정에서 null이 발생함
+# mockmvc perform 중 npe발생 > 디버그 결과 code 생성 과정에서 null이 발생함
+- Controller에서 @ModelAttribute > @RequestBody 변경 후 해결 : 이유 학습
+- 200 대신 302(redirect 3xx) 확인
+- @WebMvcTest 학습 필요
+
+! 컨트롤러 테스트에서 mvp.perform, content, valueAsString 에 대한 추가학습 필요
+
