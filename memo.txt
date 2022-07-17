@@ -21,3 +21,5 @@
 
 ! 컨트롤러 테스트에서 mvp.perform, content, valueAsString 에 대한 추가학습 필요
 
+! 컨트롤러 테스트에 실패 메서드 추가 필요
+
