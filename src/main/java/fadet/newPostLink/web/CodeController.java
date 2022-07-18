@@ -22,8 +22,9 @@ public class CodeController {
         return "input";
     }
 
+    //@ModelAttribute 에서 @RequestBody 변경
     @PostMapping("/")
-    public String postCode(@RequestBody InputForm form){
+    public String postCode(@ModelAttribute InputForm form){
         Code code = new Code(form.getAllCode(), form.getTitleHtmlKeyword(), form.getIndexHtmlKeyword());
 
         Code savedCode = codeService.saveCode(code);

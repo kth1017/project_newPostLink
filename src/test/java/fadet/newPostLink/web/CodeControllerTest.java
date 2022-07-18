@@ -90,5 +90,4 @@ class CodeControllerTest {
         assertThat(savedOne.getAllCode()).isEqualTo(TestData.testAllCode);
 
     }
-
 }
