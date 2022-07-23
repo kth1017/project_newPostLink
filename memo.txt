@@ -23,3 +23,5 @@
 
 ! 컨트롤러 테스트에 실패 메서드 추가 필요
 
+! @ModelAttribute의 경우 쿼리스트링으로 요청이 오면 파싱이 가능하지만 @RequestBody의 경우 json이 아니면 자동 파싱이 불가
+- 따라서 inputForm을 쿼리스트링에서 json으로 바꾸던지(js이용)

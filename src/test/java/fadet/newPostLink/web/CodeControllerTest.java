@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import fadet.newPostLink.TestData;
 import fadet.newPostLink.domain.Code;
 import fadet.newPostLink.repository.CodeRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -16,15 +15,10 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.client.RestTemplate;
-import org.springframework.web.context.WebApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
@@ -37,11 +31,15 @@ class CodeControllerTest {
     @Autowired
     CodeRepository codeRepository;
 
+    @Autowired
+    TestRestTemplate restTemplate;
+
     @LocalServerPort
     int port;
 
     @Autowired
     MockMvc mvc;
+
 
 //    @Test
 //    public void 테스트용인덱스_로딩() {
@@ -77,8 +75,6 @@ class CodeControllerTest {
         String url = "http://localhost:" + port + "/";
 
         //when
-        // perform 중 npe발생
-        // 디버그로 원인 파악 중
 
         mvc.perform(post(url)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -88,6 +84,31 @@ class CodeControllerTest {
         //then
         Code savedOne = codeRepository.findLastOne();
         assertThat(savedOne.getAllCode()).isEqualTo(TestData.testAllCode);
+
+    }
+
+    @Test
+    public void valid_get_일반텍스트출력정상() throws Exception{
+        //given
+        InputForm form = new InputForm(TestData.testAllCode, TestData.testTitleHtmlKeyword, TestData.testIndexHtmlKeyword);
+
+        String url = "http://localhost:" + port + "/";
+
+        mvc.perform(post(url)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(new ObjectMapper().writeValueAsString(form)))
+                .andExpect(status().is3xxRedirection());
+
+        //when
+        String body = this.restTemplate.getForObject("/valid", String.class);
+
+        //then
+        assertThat(body).contains("입력된");
+        assertThat(body).contains("유효성 검증");
+    }
+
+    @Test
+    public void valid_get_input정보출력정상(){
 
     }
 }
