@@ -13,4 +13,10 @@ public class ValidForm {
     private String allCode;
     private String titleHtmlKeyword;
     private String indexHtmlKeyword;
+
+    public ValidForm(String allCode, String titleHtmlKeyword, String indexHtmlKeyword) {
+        this.allCode = allCode;
+        this.titleHtmlKeyword = titleHtmlKeyword;
+        this.indexHtmlKeyword = indexHtmlKeyword;
+    }
 }

@@ -1,6 +1,7 @@
 package fadet.newPostLink.web;
 
 import fadet.newPostLink.domain.Code;
+import fadet.newPostLink.domain.ResultCode;
 import fadet.newPostLink.service.CodeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -21,9 +22,10 @@ public class CodeController {
     }
 
     //@ModelAttribute 에서 @RequestBody 변경
-    @PostMapping(value = "/")
+    @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
     public String postCodeJson(@RequestBody InputForm form){
         Code code = new Code(form.getAllCode(), form.getTitleHtmlKeyword(), form.getIndexHtmlKeyword());
+        codeService.saveCode(code);
 
         return "redirect:/valid";
     }
@@ -31,6 +33,7 @@ public class CodeController {
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String postCodeParam(@ModelAttribute InputForm form){
         Code code = new Code(form.getAllCode(), form.getTitleHtmlKeyword(), form.getIndexHtmlKeyword());
+        codeService.saveCode(code);
 
         return "redirect:/valid";
     }
@@ -50,4 +53,43 @@ public class CodeController {
 
         return "valid";
     }
+
+    @PostMapping(value = "/valid", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String validPostJson(@RequestBody ValidForm validForm, Model model) {
+
+        Code changeOne = new Code(validForm.getAllCode(), validForm.getTitleHtmlKeyword(), validForm.getIndexHtmlKeyword());
+        codeService.updateCode(changeOne);
+
+        Code findOne = codeService.findLastOne();
+
+        model.addAttribute("validForm", new ValidForm());
+        model.addAttribute("Code", findOne);
+        model.addAttribute("titleNum", findOne.getTitleList().size());
+
+        return "redirect:/valid";
+    }
+
+    @PostMapping(value = "/valid", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String validPostParam(@ModelAttribute("validForm") ValidForm validForm, Model model) {
+
+        Code changeOne = new Code(validForm.getAllCode(), validForm.getTitleHtmlKeyword(), validForm.getIndexHtmlKeyword());
+        codeService.updateCode(changeOne);
+
+        Code findOne = codeService.findLastOne();
+
+        model.addAttribute("validForm", new ValidForm());
+        model.addAttribute("Code", findOne);
+        model.addAttribute("titleNum", findOne.getTitleList().size());
+
+        return "redirect:/valid";
+    }
+
+    @GetMapping("/result")
+    public String result(Model model) {
+        ResultCode resultCode = codeService.modifyCode();
+        model.addAttribute("resultCode", resultCode);
+
+        return "result";
+    }
+
 }

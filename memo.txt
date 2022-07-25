@@ -25,3 +25,7 @@
 
 ! @ModelAttribute의 경우 쿼리스트링으로 요청이 오면 파싱이 가능하지만 @RequestBody의 경우 json이 아니면 자동 파싱이 불가
 - 따라서 inputForm을 쿼리스트링에서 json으로 바꾸던지(js이용)
+
+# throws Exception 빠지면 JsonProcessingException 발생, writeValueAsString은 반드시 Exception handle 필요
+
+# 테스트에서 html body는 특수문자가 이스케이프 되는 것을 유의
