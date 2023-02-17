@@ -31,6 +31,9 @@ public class Code {
          */
     public void init() {
 
+
+        // ! 타이틀 구분 키워드는 <를 구분해서 인식하기에 타이틀은 <blockquote ...><span>타이틀</></>꼴로 작성 
+
         // 여기서 타이틀을 추출하기위해 <로 나눴기때문에 이후 <를 고려해서 작성해야함
         String[] startTextArrByBracket = this.allCode.split("<");
         int textLen = startTextArrByBracket.length;

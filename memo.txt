@@ -29,3 +29,5 @@
 # throws Exception 빠지면 JsonProcessingException 발생, writeValueAsString은 반드시 Exception handle 필요
 
 # 테스트에서 html body는 특수문자가 이스케이프 되는 것을 유의
+
+! 테스트 커버리지 한글명 오류
