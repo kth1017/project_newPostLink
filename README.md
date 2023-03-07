@@ -8,3 +8,8 @@ blog post : https://fadet-coding.tistory.com/55
 
 ![image](https://user-images.githubusercontent.com/96664524/191516014-9cdf3c0c-fcde-46f2-9100-098099f93fec.png)
 
+#ver 1.0.0
+- 마크다운 수정 기본 기능 구현
+
+#ver 1.0.1
+- 성능을 위해 string builder로 교체(단일 thread므로 buffer x)
