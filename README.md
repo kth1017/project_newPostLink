@@ -15,4 +15,4 @@ blog post : https://fadet-coding.tistory.com/55
 # ver 1.0.1
 - 성능을 위해 for문 사용 코드 내부 string builder로 교체(단일 thread므로 buffer x)
 - 변환 함수 init에 설명 추가
-- 테스트 코드 일부 수정
+- 테스트 데이터 일부 수정
