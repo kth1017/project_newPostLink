@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter @Setter
 public class Code {
@@ -16,7 +17,7 @@ public class Code {
     private String titleHtmlKeyword;
     private String indexHtmlKeyword;
 
-    // 검증 사항
+    // 검증 사항(init() 이후 set)
     private List<String> titleList;
     private int indexOver;
 
@@ -52,24 +53,30 @@ public class Code {
             }
         }
 
-        // 기존에 있던 set 삭제
-
         // titleList init
 
-        List<String> titleList = new ArrayList<>();
 
-        // 임시로 글씨체를 포함하도록 로직을 짬(이후 고쳐야함)
-        for (int i = 0; i < oldList.size(); i++) {
-            titleList.add(oldList.get(i).split(">")[1]);;
-        }
 
-        setTitleList(titleList);
+        /*
+         임시로 타이틀 키워드 이후의 글씨체(span tag)를 포함하도록 로직을 짬(이후 고쳐야함)
+         아래 주석은 for문 사용
+         */
+//        List<String> titleList = new ArrayList<>();
+//        for (int i = 0; i < oldList.size(); i++) {
+//            titleList.add(oldList.get(i).split(">")[1]);;
+//        }
+        List<String> titleList = oldList.stream()
+                .map((str) -> str.split(">")[1])
+                .collect(Collectors.toList());
+
+
+        this.titleList = titleList;
 
         // indexOver init(2가 정상)
 
         String[] resultArr = allCode.split(this.indexHtmlKeyword);
 
-        setIndexOver(resultArr.length);
+        this.indexOver = resultArr.length;
 
     }
 }

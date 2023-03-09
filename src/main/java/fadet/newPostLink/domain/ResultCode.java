@@ -32,7 +32,7 @@ public class ResultCode {
         for (int i = 1; i < arrLen; i++) {
             addTitleTextBuilder.append(modiTitleKeywordArr[0])
                     .append(" id=\"").append(i).append("\" ")
-                    .append(modiTitleKeywordArr[1]).append(" ").append(modiTitleKeywordArr[2]);
+                    .append(modiTitleKeywordArr[1]).append(" ");
             addTitleTextBuilder.append(oldCodeArrByKeyword[i]);
         }
 
