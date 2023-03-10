@@ -16,3 +16,4 @@ blog post : https://fadet-coding.tistory.com/55
 - 성능을 위해 for문 사용 코드 내부 string builder로 교체(단일 thread므로 buffer x)
 - 변환 함수 init에 설명 추가
 - iteratordml for문을 stream으로 교체, builder의 경우 가독성을 위해 for문 유지(메서드 참조는 자바 사용자가 아니면 알지 못하므로 사용하지 않음)
+- 테스트 데이터 수정
