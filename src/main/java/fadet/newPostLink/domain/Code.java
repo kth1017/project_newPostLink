@@ -49,7 +49,10 @@ public class Code {
             if (startTextArrByBracket[i].equals(addBracketKeyword)) {
                 count++;
                 // 타이틀명 스트림으로 저장
+                System.out.println(startTextArrByBracket.length);
+                System.out.println(textLen);
                 oldList.add(startTextArrByBracket[i+1]);
+                System.out.println(oldList);
             }
         }
 
