@@ -9,6 +9,10 @@ blog post : https://fadet-coding.tistory.com/55
 
 ![image](https://user-images.githubusercontent.com/96664524/191516014-9cdf3c0c-fcde-46f2-9100-098099f93fec.png)
 
+# 사용 기술
+
+- Spring Boot : junit을 사용한 테스트 코드 활용으로 TDD 학습, 트랜잭션 스크립트 대신 도메인 모델 패턴을 지향
+
 # ver 1.0.0
 - html 수정 기본 기능 구현
 
