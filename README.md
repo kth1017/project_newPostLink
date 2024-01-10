@@ -1,5 +1,6 @@
 # project_newPostLink 개요
 티스토리 블로그 포스팅 중 목차에 링크를 추가하는 웹 프로젝트
+(서드파티 특성상 현재 티스토리 마크다운 패치로 인해 본인 이외 사용하기 힘들어짐)
 
 blog post : https://fadet-coding.tistory.com/55
 
