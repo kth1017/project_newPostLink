@@ -13,9 +13,9 @@ public class Code {
     private Long id;
 
     // 필수 입력
-    private String allCode;
-    private String titleHtmlKeyword;
-    private String indexHtmlKeyword;
+    private final String allCode;
+    private final String titleHtmlKeyword;
+    private final String indexHtmlKeyword;
 
     // 검증 사항(init() 이후 set)
     private List<String> titleList;
